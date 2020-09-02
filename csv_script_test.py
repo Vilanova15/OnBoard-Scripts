@@ -2,31 +2,18 @@ import random as rnd
 import time as t
 
 from datetime import date as d
-from radiodata import RadioData
+from radiodata.radiodata import RadioData
 from data_to_csv import data_to_csv
 
 date = d.today()
 time = t.ctime().split()[3]
 filename = "buggyData.csv"
 
-data = {
-        "id": rnd.randint(0, 100),
-        "strain_sensor_1": rnd.randint(0, 100),
-        "strain_sensor_2": rnd.randint(0, 100),
-        "strain_sensor_3": rnd.randint(0, 100),
-        "strain_sensor_4": rnd.randint(0, 100),
-        "vibration_sensor_1": rnd.randint(0, 100),
-        "vibration_sensor_2": rnd.randint(0, 100),
-        "vibration_sensor_3": rnd.randint(0, 100),
-        "vibration_sensor_4": rnd.randint(0, 100),
-        "vibration_sensor_5": rnd.randint(0, 100),
-        "battery_status": rnd.randint(0, 100),
-        "latitude": rnd.randint(0, 100),
-        "longitude": rnd.randint(0, 100),
-        "OBC_time": time,
-        "OBC_date": date
-        }
+data_list = [rnd.randint(0, 100) for i in range(15)]
+gps_list = [rnd.randint(0, 100), rnd.randint(0, 100)]
 
-dataObj = RadioData(data)
+dataObj = RadioData(data_list, gps_list)
+dataObj.OBC_time = dataObj.GSC_time = time
+dataObj.OBC_date = dataObj.GSC_date = date
 
 data_to_csv(dataObj, filename)
