@@ -30,8 +30,9 @@ class RadioData:
     def __init__(self, data_list: list, gps_list: list):
         """
         RadioData constructor.
+
         :param data_list: contains all the data from the sensors except OBC and GSC timestamps.
-                            Assuming data_list is of length 15 and values in same order as FIELDNAMES.
+            Assuming data_list is of length 15 and values in same order as FIELDNAMES.
         :param gps_list: contains latitude and longitude in that order.
         """
         # Strain sensors
